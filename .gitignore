@@ -1,0 +1,4 @@
+nyc-parking-tickets/*
+ProducerCSV/project/target/*
+ProducerCSV/target/*
+ProducerCSV/.idea/*
