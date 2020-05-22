@@ -2,3 +2,8 @@ nyc-parking-tickets/*
 ProducerCSV/project/target/*
 ProducerCSV/target/*
 ProducerCSV/.idea/*
+ProducerCSV/project/project/
+ProducerDrone/project/target/*
+ProducerDrone/target/*
+ProducerDrone/.idea/*
+ProducerDrone/project/project/
