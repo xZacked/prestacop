@@ -5,9 +5,9 @@ import org.apache.kafka.common.serialization.StringSerializer
 
 import scala.io.Source
 
-class CSV_Reader {
+object CSV_Reader {
   val props: Properties = new Properties()
-  props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "broker1:9092")
+  props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
   props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, classOf[StringSerializer])
   props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, classOf[StringSerializer])
 
@@ -43,7 +43,7 @@ class CSV_Reader {
             "time" -> msg.time,
             "violation_code" -> msg.violation_code
           ).toString)
-        println("plate_id = " + msg.plate_id + ", address = " + msg.address + ", time = " + msg.time + "violation_code" -> msg.violation_code)
+        // println("plate_id: " + msg.plate_id + ", address: " + msg.address + ", time: " + msg.time + ", violation_code: " + msg.violation_code)
         producer.send(record) // ne pas utiliser get
 
       // case _ => Nil
@@ -51,7 +51,8 @@ class CSV_Reader {
   }
 
   def main(args: Array[String]): Unit = {
-    csv2msg("")
+    val path = "/home/xzacked/Documents/scala/prestacop/nyc-parking-tickets/Parking_Violations_Issued_-_Fiscal_Year_2014__August_2013___June_2014_.csv"
+    csv2msg(path)
   }
 
 }
