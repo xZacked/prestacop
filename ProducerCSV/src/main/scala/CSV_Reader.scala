@@ -43,7 +43,7 @@ object CSV_Reader {
             "time" -> msg.time,
             "violation_code" -> msg.violation_code
           ).toString)
-        // println("plate_id = " + msg.plate_id + ", address = " + msg.address + ", time = " + msg.time + "violation_code" -> msg.violation_code)
+        // println("plate_id = " + msg.plate_id + ", address = " + msg.address + ", time = " + msg.time + ", violation_code = " + msg.violation_code)
         producer.send(record) // ne pas utiliser get
       }
   }
