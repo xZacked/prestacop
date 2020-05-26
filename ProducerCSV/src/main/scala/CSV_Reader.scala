@@ -29,8 +29,8 @@ object CSV_Reader {
   def line2msg(col_names: List[String], line: List[String], producer: KafkaProducer[String, String]): Any = {
     line match {
       case x if line.size > col_names.indexOf("Violation Time") =>
-        val plate_id = x(col_names.indexOf("Plate ID"))
-        val address = Some(x(col_names.indexOf("House Number")) + " " + x(col_names.indexOf("Street Name")))
+        val plate_id = Some(x(col_names.indexOf("Plate ID")))
+        val address = x(col_names.indexOf("House Number")) + " " + x(col_names.indexOf("Street Name"))
         val time = x(col_names.indexOf("Issue Date")) + " " + x(col_names.indexOf("Violation Time"))
         val violation_code = Some(x(col_names.indexOf("Violation Code")))
 
@@ -45,8 +45,6 @@ object CSV_Reader {
           ).toString)
         // println("plate_id = " + msg.plate_id + ", address = " + msg.address + ", time = " + msg.time + "violation_code" -> msg.violation_code)
         producer.send(record) // ne pas utiliser get
-
-      // case _ => Nil
       }
   }
 

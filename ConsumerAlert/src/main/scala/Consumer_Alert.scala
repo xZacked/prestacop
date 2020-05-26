@@ -15,7 +15,7 @@ object Consumer_Alert {
     props.put(ConsumerConfig.GROUP_ID_CONFIG, "myconsumergroup") // ne pas set auto commit à true car on perd des msg
 
     val consumer: KafkaConsumer[String, String] = new KafkaConsumer[String, String](props)
-    consumer.subscribe(List("csv_topic").asJava)
+    consumer.subscribe(List("drone_alert_topic").asJava)
     while (true){
       val records: ConsumerRecords[String, String] = consumer.poll(Duration.ofMillis(100))
       records.asScala.foreach { record =>
