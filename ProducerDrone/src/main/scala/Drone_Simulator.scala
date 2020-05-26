@@ -52,8 +52,8 @@ object Drone_Simulator {
         "time" -> msg.time,
         "violation_code" -> msg.violation_code
       ).toString)
-//    println("drone_id = " + msg.drone_id + ", plate_id = " + msg.plate_id + ", address = "
-//      + msg.address + ", time: " + msg.time + ", violation_code:" + msg.violation_code)
+    println("drone_id = " + msg.drone_id + ", plate_id = " + msg.plate_id + ", address = "
+      + msg.address + ", time: " + msg.time + ", violation_code:" + msg.violation_code)
     producer.send(record)
   }
 
