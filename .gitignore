@@ -11,3 +11,4 @@ ConsumerAlert/project/target/*
 ConsumerAlert/target/*
 ConsumerAlert/.idea/*
 ConsumerAlert/project/project/
+*.idea/*
