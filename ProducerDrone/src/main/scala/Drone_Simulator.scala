@@ -30,17 +30,24 @@ object Drone_Simulator {
   def simulate_drone(producer: KafkaProducer[String, String], is_alert: Boolean = false ) {
     val r = scala.util.Random
     val drone_id = Some(r.nextInt(10))
-    val time = r.nextInt(12).toString + '/' + r.nextInt(30).toString + "/2020 0" +
-      r.nextInt(9).toString + r.nextInt(59).toString + 'A'
+
+
+    val month = "%02d".format(1 + r.nextInt(12))
+    val day = "%02d".format(1 + r.nextInt(30))
+    val hour = "%02d".format(1 + r.nextInt(12))
+    val minute = "%02d".format(r.nextInt(59))
+
+
+    val time = month + '/' + day + "/2020 " + hour + minute + 'A'
     val address =  r.alphanumeric.filter(_.isDigit).take(3).mkString + " W " +
       r.nextInt(99).toString + "th St"
     var plate_id : Option[String] = None
     var violation_code : Option[String] = None
     if (is_alert)
-      {
-        plate_id = Some(r.alphanumeric.take(7).mkString.toUpperCase)
-        violation_code = Some((1 + r.nextInt((99 - 1) + 1)).toString)
-      }
+    {
+      plate_id = Some(r.alphanumeric.take(7).mkString.toUpperCase)
+      violation_code = Some((1 + r.nextInt((99 - 1) + 1)).toString)
+    }
 
     val msg = Message(time = time, plate_id = plate_id, drone_id = drone_id,
       violation_code = violation_code, address = address)
@@ -58,7 +65,7 @@ object Drone_Simulator {
   }
 
   def main(args: Array[String]): Unit = {
-    drone2msg(10)
+    drone2msg(1000)
   }
 
 }
