@@ -16,23 +16,11 @@ object Stream_Alert {
   streamsConfiguration.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
 
   def main(args: Array[String]): Unit = {
-    def alert(message: Message): Unit = {
-      println("Warning ! vehicle " + message.plate_id.get
-        + " was caught committing offense number " + message.violation_code.get +
-        " on " + message.time + " at the following address " + message.address)
-    }
     implicit val msg = Json.format[Message]
-
-
     val builder = new StreamsBuilder()
     val textLines = builder.stream[String, String]("drone_topic")
-
-    val toto = textLines
-      .mapValues(m => Json.parse(m).as[Message])
-      .filter((key,value) => value.violation_code.isDefined)
-      .foreach((key,value) => alert(value))
-
-    // toto.to("alert_topic")
+    val alert1 = textLines.filter((x,v) => Json.parse(v).as[Message].violation_code.isDefined)
+    alert1.to("alert_topic")
 
     val streams = new KafkaStreams(builder.build(), streamsConfiguration)
     streams.start()

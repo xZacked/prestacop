@@ -4,9 +4,16 @@ import java.util.Properties
 import scala.collection.JavaConverters._
 import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecords, KafkaConsumer}
 import org.apache.kafka.common.serialization.StringDeserializer
+import play.api.libs.json.Json
 
 object Consumer_Alert {
   def main(args: Array[String]): Unit = {
+    def alert(message: Message): Unit = {
+      println("Warning ! vehicle " + message.plate_id.get
+        + " was caught committing offense number " + message.violation_code.get +
+        " on " + message.time + " at the following address " + message.address)
+    }
+    implicit val msg = Json.format[Message]
     // Instantiate a producer
     val props: Properties = new Properties()
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
@@ -18,8 +25,7 @@ object Consumer_Alert {
     consumer.subscribe(List("alert_topic").asJava)
     while (true){
       val records: ConsumerRecords[String, String] = consumer.poll(Duration.ofMillis(100))
-      records.asScala.foreach { record =>
-        println(s"value = ${record.value()}")
+      records.asScala.foreach { record => alert(Json.parse(record.value).as[Message])
       }
     }
     consumer.commitSync()
