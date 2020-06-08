@@ -65,7 +65,7 @@ object Drone_Simulator {
   }
 
   def main(args: Array[String]): Unit = {
-    drone2msg(1000)
+    drone2msg(10)
   }
 
 }

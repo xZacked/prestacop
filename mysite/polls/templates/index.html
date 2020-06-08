@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Alerts</title>
+    <title>Prestacop</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -11,15 +11,15 @@
 <body>
 
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Prestacop</a>
+        <a class="navbar-brand" href="#">Prestacop (Gestion des alertes)</a>
     </nav>
 
     <div class="card-header bg-dark text-white" id="headingOne">
         <div class="row">
-            <div class="col s4">Nom du drone</div>
+            <div class="col s4">Identifiant du drone</div>
             <div class="col s4">Date</div>
-            <div class="col s4">Violation Code</div>
-            <div class="col s4">Solved</div>
+            <div class="col s4">Code de violation</div>
+            <div class="col s4">Résolu</div>
         </div>
 
 
@@ -39,7 +39,7 @@
                     <div class="col s4">
                         
                         <input type="checkbox" class="buttonCheck">
-                        <span class="text-danger"> Solved </span>
+                        <span class="text-danger"> OK </span>
 
                     </div>
 
@@ -53,9 +53,9 @@
                     <div class="row">
                         <div class="col s6">
                             <ul>
-                                <li><strong>Id drone:</strong> {{ alert.drone_id}} </li>
+                                <li><strong>Identifiant du drone:</strong> {{ alert.drone_id}} </li>
                                 <li> <strong>Date:</strong> {{ alert.time}} </li>
-                                <li> <strong>Violation code:</strong> {{ alert.violation_code}} </li>
+                                <li> <strong>Code de violation:</strong> {{ alert.violation_code}} </li>
                                 <li> <strong>Plaque d'immatriculation:</strong> {{ alert.plate_id}}</li>
                                 <li> <strong>Adresse:</strong> {{ alert.address}} </li>
                             </ul>
