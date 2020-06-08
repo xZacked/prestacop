@@ -1,44 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Alerts</title>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous"
-    >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
+
 <body>
-<main class="container">
-    <h1>Non handled alerts</h1>
-    <br>
-    <table class="table table-hover table-condensed table-sm">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Drone</th>
-            <th scope="col">Issue date</th>
-            <th scope="col">Violation code</th>
-            <th scope="col">Solved</th>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Prestacop</a>
+    </nav>
+
+    <div class="card-header bg-dark text-white" id="headingOne">
+        <div class="row">
+            <div class="col s4">Nom du drone</div>
+            <div class="col s4">Date</div>
+            <div class="col s4">Violation Code</div>
+            <div class="col s4">Solved</div>
+        </div>
 
 
-        </tr>
-        </thead>
-        <tbody>
+
+    </div>
+
+    <div id="accordion">
+        <!--Debut de la boucle-->
         {% for alert in alert_list %}
-            <tr>
-                <th scope="row">{{ alert.violation_id }}</th>
-                <td>{{ alert.drone_id }}</td>
-                <td>{{ alert.time }}</td>
-                <td>{{ alert.violation_code}}</td>
-                <td>
+        <div class="card">
+            <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne{{ alert.id}}"
+                aria-expanded="true" aria-controls="collapseOne">
+                <div class="row">
+                    <div class="col s4">{{ alert.drone_id}}</div>
+                    <div class="col s4">{{ alert.time}}</div>
+                    <div class="col s4">{{ alert.violation_code}}</div>
+                    <div class="col s4">
+                        
+                        <input type="checkbox" class="buttonCheck">
+                        <span class="text-danger"> Solved </span>
 
-                </td>
-            </tr>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <div id="collapseOne{{ alert.id}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col s6">
+                            <ul>
+                                <li><strong>Id drone:</strong> {{ alert.drone_id}} </li>
+                                <li> <strong>Date:</strong> {{ alert.time}} </li>
+                                <li> <strong>Violation code:</strong> {{ alert.violation_code}} </li>
+                                <li> <strong>Plaque d'immatriculation:</strong> {{ alert.plate_id}}</li>
+                                <li> <strong>Adresse:</strong> {{ alert.address}} </li>
+                            </ul>
+                        </div>
+                        <div class="col s6">
+                            <div style="width: 100%"><iframe width="100%" height="200" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=16%20Rue%20Voltaire%2C%2094270%20Le%20Kremlin-Bic%C3%AAtre+(Epita)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/draw-radius-circle-map/">Google Maps Radius</a></iframe></div><br />
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
-</main>
+<!-- fin de la boucle-->
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script>
+        $('.collapse').collapse()
+        $('.buttonCheck').click(function(){
+            if($(this).is(':checked')){
+                $(this).next().removeClass("text-danger")
+                $(this).next().addClass("text-success")
+
+            }else{
+                $(this).next().removeClass("text-success")
+                $(this).next().addClass("text-danger")
+            }
+        });
+    </script>
+
 </body>
+
 </html>
