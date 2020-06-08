@@ -25,7 +25,7 @@ object Spark_Streaming {
       .readStream
       .format("kafka")
       .option("kafka.bootstrap.servers", "localhost:9092")
-      .option("subscribe", "drone_topic")
+      .option("subscribe", "drone_topic, csv_topic")
       .load()
 
     val d = df.selectExpr("CAST(value AS STRING)")
