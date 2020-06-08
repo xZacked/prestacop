@@ -16,9 +16,11 @@ The drone have camera with a pattern recognition software identifies license pla
 *  **ConsumerAlert**: Consumes stream messages, raises an alarm when human interaction is required
 * **SparkStreaming**: Consumes stream messages, stores them
 * **SparkAnalysis**: Reads messages out of storage, performs the analysis
+* **mysite**: Django web app in order to display alerts messages
+* ~~**StreamToStorage**~~: Our old way of consume stream messages using Apach Flume (which was not viable)
 
+![](https://i.imgur.com/qqfZ8yx.png)
 
-![](https://i.imgur.com/EP5dwsm.png)
 
 ## How to run the project
 
