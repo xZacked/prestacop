@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alerts</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous"
+    >
+</head>
+<body>
+<main class="container">
+    <h1>Non handled alerts</h1>
+    <br>
+    <table class="table table-hover table-condensed table-sm">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Drone</th>
+            <th scope="col">Issue date</th>
+            <th scope="col">Violation code</th>
+            <th scope="col">Solved</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for alert in alert_list %}
+            <tr>
+                <th scope="row">{{ alert.violation_id }}</th>
+                <td>{{ alert.drone_id }}</td>
+                <td>{{ alert.time }}</td>
+                <td>{{ alert.violation_code}}</td>
+                <td>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

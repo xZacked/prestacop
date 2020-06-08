@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alert</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css"
+          integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA"
+          crossorigin="anonymous"
+    >
+</head>
+<body>
+<main class="container">
+    <h1>Alert n°{{ alert.id }}</h1>
+    <br>
+    <div class="row">
+        <div class="col-sm-2">Drone id</div>
+        <div class="col-sm">{{ alert.drone_id }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">Longitude</div>
+        <div class="col-sm">{{ alert.lon }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">Latitude</div>
+        <div class="col-sm">{{ alert.lat }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">Issue date</div>
+        <div class="col-sm">{{ alert.time }}</div>
+    </div>
+    <br>
+    <form action="{% url 'handler:send' alert.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label for="inputImage" class="col-sm-2 col-form-label">Image</label>
+            <input type="file" class="file-upload col-sm-5" id="inputImage" name="image">
+        </div>
+        <div class="form-group row">
+            <label for="inputViolationCode" class="col-sm-2 col-form-label">Violation code</label>
+            <div class="col-sm-10">
+                <select class="custom-select col-sm-2" id="inputViolationCode" name="violation_code">
+                    <option selected>1</option>
+                    {% for i in range %}
+                        <option>{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </div>
+        </div>
+    </form>
+</main>
+</body>
+</html>
