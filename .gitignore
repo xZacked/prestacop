@@ -11,4 +11,7 @@ ConsumerAlert/project/target/*
 ConsumerAlert/target/*
 ConsumerAlert/.idea/*
 ConsumerAlert/project/project/
-*.idea/*
+StreamAlert/project/target/*
+StreamAlert/target/*
+StreamAlert/.idea/*
+StreamAlert/project/project/
