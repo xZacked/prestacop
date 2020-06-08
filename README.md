@@ -29,7 +29,7 @@ The drone have camera with a pattern recognition software identifies license pla
 
 1. Follow this tutorial: https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html
 2. /!\ Don't forget to add this line in hadoop-env.sh file in the etc/hadoop/ directory 
-3. 
+
 ##### Being Django ready
 1. You should have a python3.7 (or higher)
 2. Install Django (python -m pip install Django)
