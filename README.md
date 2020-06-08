@@ -16,6 +16,7 @@ The drone have camera with a pattern recognition software identifies license pla
 *  **ConsumerAlert**: Consumes stream messages, raises an alarm when human interaction is required
 * **SparkStreaming**: Consumes stream messages, stores them
 * **SparkAnalysis**: Reads messages out of storage, performs the analysis
+* **StreamAlert**: Filter data in order to send alert on the alert-topic
 * **mysite**: Django web app in order to display alerts messages
 * ~~**StreamToStorage**~~: Our old way of consume stream messages using Apach Flume (which was not viable)
 
@@ -28,6 +29,10 @@ The drone have camera with a pattern recognition software identifies license pla
 
 1. Follow this tutorial: https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html
 2. /!\ Don't forget to add this line in hadoop-env.sh file in the etc/hadoop/ directory 
+3. 
+##### Being Django ready
+1. You should have a python3.7 (or higher)
+2. Install Django (python -m pip install Django)
 
 #### How to run Zookeeper and Kafka 
 1. Run Zookeeper: **bin/zookeeper-server-start.sh config/zookeeper.properties**
@@ -39,9 +44,16 @@ The drone have camera with a pattern recognition software identifies license pla
 3. You can use the **jps** command to verify if your Datanode and Namenode have been created
 4. Don't forget to make the HDFS directory required to execute MapReduce jobs with the name **prestacop-storage/**
 
+#### How to run the web site
+    python manage.py runserver
+    
+
 ## Launch the project
 1. Run Zookeeper and Kafka
 2. Run HDFS
 3. Run your producers (CSV or Drone simulator or both)
-4. Run SparkStreaming 
-5. Run SparkAnalysis 
+4. Run AlertStream
+5. Run ConsumerAlert main which will display alert message on terminal
+6. Run the web site in order to view the alert messages 
+7. Run SparkStreaming main
+8. Run SparkAnalysis main
