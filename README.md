@@ -53,7 +53,7 @@ The drone have camera with a pattern recognition software identifies license pla
 2. Run HDFS
 3. Run your producers (CSV or Drone simulator or both)
 4. Run AlertStream
-5. Run ConsumerAlert main which will display alert message on terminal
-6. Run the web site in order to view the alert messages 
+5. Run the web site in order to view the alert messages
+6. Run ConsumerAlert main which will display alert message on terminal 
 7. Run SparkStreaming main
 8. Run SparkAnalysis main
